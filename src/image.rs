@@ -682,6 +682,7 @@ pub enum ImageFilter {
     Dangling,
     LabelName(String),
     Label(String, String),
+    Reference(String),
 }
 
 /// Options for filtering image list results
@@ -745,6 +746,7 @@ impl ImageListOptionsBuilder {
                 ImageFilter::Dangling => param.insert("dangling", vec![true.to_string()]),
                 ImageFilter::LabelName(n) => param.insert("label", vec![n]),
                 ImageFilter::Label(n, v) => param.insert("label", vec![format!("{}={}", n, v)]),
+                ImageFilter::Reference(n) => param.insert("reference", vec![n]),
             };
         }
         // structure is a a json encoded object mapping string keys to a list
